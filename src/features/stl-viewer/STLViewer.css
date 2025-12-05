@@ -1,0 +1,139 @@
+
+.stl-viewer {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.stl-viewer.fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  border-radius: 0;
+  z-index: 9999;
+  background: #0f172a;
+}
+
+.stl-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  outline: none;
+}
+
+.viewer-controls-hint {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  color: #e2e8f0;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  animation: fadeInUp 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 10;
+}
+
+.fullscreen-toggle {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #e2e8f0;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.fullscreen-toggle:hover {
+  background: rgba(59, 130, 246, 0.8);
+  color: white;
+  transform: scale(1.1);
+  border-color: rgba(59, 130, 246, 0.8);
+}
+
+.fullscreen-toggle:active {
+  transform: scale(0.95);
+}
+
+.fullscreen-toggle svg {
+  transition: transform 0.2s ease;
+}
+
+.hint-icon {
+  font-size: 0.9rem;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 10px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@media (max-width: 768px) {
+  .stl-viewer {
+    height: 400px;
+  }
+  
+  .viewer-controls-hint {
+    font-size: 0.7rem;
+    padding: 0.4rem 0.8rem;
+    bottom: 0.5rem;
+  }
+  
+  .fullscreen-toggle {
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* Fullscreen mode adjustments */
+.stl-viewer.fullscreen .viewer-controls-hint {
+  bottom: 2rem;
+  font-size: 0.9rem;
+  padding: 0.75rem 1.5rem;
+}
+
+.stl-viewer.fullscreen .fullscreen-toggle {
+  top: 2rem;
+  right: 2rem;
+  width: 44px;
+  height: 44px;
+}
+
+.stl-viewer.fullscreen .fullscreen-toggle svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Ensure fullscreen canvas takes full space */
+.stl-viewer.fullscreen .stl-canvas {
+  width: 100vw;
+  height: 100vh;
+}
